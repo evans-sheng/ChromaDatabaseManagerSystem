@@ -1,0 +1,194 @@
+@use './variables.scss' as *;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background-color: $bg-color-light;
+  color: $text-color-primary;
+  line-height: 1.6;
+}
+
+#app {
+  height: 100vh;
+  overflow: hidden;
+  background-color: $bg-color-light;
+}
+
+// Element Plus 组件主题适配
+:root {
+  --el-color-primary: #{$primary-color};
+  --el-color-primary-light-3: #{lighten($primary-color, 15%)};
+  --el-color-primary-light-5: #{lighten($primary-color, 25%)};
+  --el-color-primary-light-7: #{lighten($primary-color, 35%)};
+  --el-color-primary-light-8: #{lighten($primary-color, 45%)};
+  --el-color-primary-light-9: #{lighten($primary-color, 55%)};
+  --el-color-primary-dark-2: #{darken($primary-color, 10%)};
+  
+  --el-bg-color: #ffffff;
+  --el-bg-color-page: #{$bg-color-light};
+  --el-bg-color-overlay: #ffffff;
+  
+  --el-text-color-primary: #303133;
+  --el-text-color-regular: #606266;
+  --el-text-color-secondary: #909399;
+  --el-text-color-placeholder: #c0c4cc;
+  
+  --el-border-color: #dcdfe6;
+  --el-border-color-light: #e4e7ed;
+  --el-border-color-lighter: #ebeef5;
+}
+
+// 按钮主题覆盖
+.el-button--primary {
+  background-color: $primary-color;
+  border-color: $primary-color;
+  
+  &:hover {
+    background-color: lighten($primary-color, 10%);
+    border-color: lighten($primary-color, 10%);
+  }
+  
+  &:active {
+    background-color: darken($primary-color, 5%);
+    border-color: darken($primary-color, 5%);
+  }
+}
+
+// 单选按钮组主题
+.el-radio-button__inner {
+  border-color: #dcdfe6;
+  color: #606266;
+  background-color: #ffffff;
+  
+  &:hover {
+    color: $primary-color;
+  }
+}
+
+.el-radio-button__original-radio:checked + .el-radio-button__inner {
+  background-color: $primary-color;
+  border-color: $primary-color;
+  color: white;
+  box-shadow: -1px 0 0 0 $primary-color;
+}
+
+// 输入框主题
+.el-input__wrapper {
+  background-color: #ffffff;
+  border: 1px solid #dcdfe6;
+  
+  &:hover {
+    border-color: $primary-color;
+  }
+  
+  &.is-focus {
+    border-color: $primary-color;
+    box-shadow: 0 0 0 1px rgba(210, 105, 30, 0.2);
+  }
+}
+
+// 选择器主题
+.el-select .el-input.is-focus .el-input__wrapper {
+  border-color: $primary-color;
+  box-shadow: 0 0 0 1px rgba(210, 105, 30, 0.2);
+}
+
+// 卡片主题 - 面板内部使用白色背景
+.el-card {
+  background-color: #ffffff;
+  border: 1px solid #dcdfe6;
+  
+  .el-card__header {
+    background-color: #f5f7fa;
+    border-bottom: 1px solid #dcdfe6;
+  }
+}
+
+// 标签主题
+.el-tag {
+  &.el-tag--info {
+    background-color: rgba(210, 105, 30, 0.1);
+    border-color: rgba(210, 105, 30, 0.2);
+    color: darken($primary-color, 20%);
+  }
+  
+  &.el-tag--success {
+    background-color: rgba(103, 194, 58, 0.1);
+    border-color: rgba(103, 194, 58, 0.2);
+  }
+}
+
+// 主布局样式
+.app-container {
+  display: flex;
+  height: 100vh;
+  
+  .sidebar {
+    width: $sidebar-width;
+    background-color: $bg-color-light;
+    border-right: 1px solid $border-color;
+    overflow-y: auto;
+    
+    .sidebar-content {
+      padding: $spacing-md;
+    }
+  }
+  
+  .main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    
+    .content-header {
+      height: $header-height;
+      background-color: $bg-color-light;
+      border-bottom: 1px solid $border-color;
+      display: flex;
+      align-items: center;
+      padding: 0 $spacing-lg;
+    }
+    
+    .content-body {
+      flex: 1;
+      padding: $spacing-lg;
+      overflow-y: auto;
+      background-color: $bg-color-light;
+    }
+  }
+}
+
+// 连接状态样式
+.connection-status {
+  &.connected {
+    color: $success-color;
+  }
+  
+  &.disconnected {
+    color: $danger-color;
+  }
+}
+
+// 卡片样式
+.info-card {
+  background-color: #ffffff;
+  border: 1px solid #dcdfe6;
+  border-radius: $border-radius;
+  padding: $spacing-md;
+  margin-bottom: $spacing-md;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}
+
+// 响应式设计
+@media (max-width: 768px) {
+  .app-container {
+    .sidebar {
+      width: 250px;
+    }
+  }
+}
